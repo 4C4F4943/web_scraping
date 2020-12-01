@@ -1,3 +1,5 @@
+# Annoying university website...
+
 So here i was just finding out the universities library was open for not students. So of course i went and got myself a memberships card. But there was one really annoying thing.
 
 They had some books that you could only read if you where studying at the college and practically all the books i want to read are "UGent only". 
@@ -16,3 +18,13 @@ My result looks something like this:
 7         Claim Models: Granular Forms and Machin...  https://tinyurl.com/y4xxkrra
 8                   Machine learning for dummies      https://tinyurl.com/y6jpxwt9
 </pre>
+## further usage
+If you want to use it for another website change this url. If youre website doesn,t have multiple pages then you do not need to use the pagenumber thing. 
+You can just use 1 url.
+
+```python
+WITH_PAGES = requests.get("https://lib.ugent.be/en/catalog?max_year=2020&min_year=1950&page="+str(pageNo)+"&q=machine+learning&type=book")
+WITHOUT_PAGES = requests.get("https://lib.ugent.be/en/catalog?max_year=2020&min_year=1950&page=1&q=machine+learning&type=book")
+
+```
+But still very nice of the university to make a big part of their library public.
