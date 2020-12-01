@@ -10,7 +10,6 @@ import matplotlib.ticker as ticker
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import requests
-#url = https://drop.com/mechanical-keyboards/drops
 
 import urllib.request
 
@@ -37,14 +36,12 @@ def get_data(pageNo):
         try:
             isUgent = d.find("small",attrs={"help-block text-center"}).text
             #print(isUgent.text)
-            #print(isUgent.text)
             exit
         except:
             name = d.find("h2",attrs={"class":"search-result__title meta-title"}).a.text
             name = name[2:-1]
             als = []
             #print("this is name: ",name)
-            # url1= d.find('a')["href"]
             url1 = d.find("a")
         
             url2 = "https://lib.ugent.be/"+url1["href"]
@@ -63,7 +60,7 @@ def get_data(pageNo):
 results = []
 no_pages = 10
 #### for some reason this works [[['       Machine Learning and Biometrics    ', 'https://tinyurl.com/y5h3ryjg']]] but all good now
-# should be like [[name,href],[name,href]]
+# should be like [[[name,href],[name,href]]]
 for i in range(1, no_pages+1):
     x = get_data(i)
     #print("this is x: ",x)
