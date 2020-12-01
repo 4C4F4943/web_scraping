@@ -23,8 +23,8 @@ If you want to use it for another website change this url. If youre website does
 You can just use 1 url.
 
 ```python
-WITH_PAGES = requests.get("https://lib.ugent.be/en/catalog?max_year=2020&min_year=1950&page="+str(pageNo)+"&q=machine+learning&type=book")
-WITHOUT_PAGES = requests.get("https://lib.ugent.be/en/catalog?max_year=2020&min_year=1950&page=1&q=machine+learning&type=book")
+WITH_PAGES = requests.get("https://YOURE_URL.com/PAGE="+str(pageNo)+"THE_REST_OF_THE_URL")
+WITHOUT_PAGES = requests.get("https://YOURE_URL.com")
 
 ```
 But still very nice of the university to make a big part of their library public.
