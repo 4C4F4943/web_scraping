@@ -1,6 +1,3 @@
-
-#Grid___c--1__2obI2  wdio_card shop_card wdio_drop_card wdio_drop_card--live Card__card__1RLRm Card__background--light-gray__F8hUw Grid__gridItem__2qOsq
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,7 +12,6 @@ from bs4 import BeautifulSoup
 import requests
 #url = https://drop.com/mechanical-keyboards/drops
 
-no_pages = 10
 import urllib.request
 
 def tiny_url(url):
@@ -34,35 +30,37 @@ def get_data(pageNo):
     content = r.content
     soup = BeautifulSoup(content)
     #print(soup)
+    
     all1 = []
     for d in soup.findAll('article', attrs={'class':'col-md-12 search-result'}):
-        
         #name = d.find('a', attrs={'article':'middle_productsDetail_text_180710|category|18206083330'}).text
         
         #print("this is url1: ",url1)
         
         try:
-            isUgent = d.find("small",attrs={"help-block text-center"})
+            isUgent = d.find("small",attrs={"help-block text-center"}).text
             #print(isUgent.text)
-            print(isUgent.text)
+            #print(isUgent.text)
             exit
         except:
             name = d.find("h2",attrs={"class":"search-result__title meta-title"}).a.text
             name = name[2:-1]
-        
+            als = []
             #print("this is name: ",name)
             # url1= d.find('a')["href"]
             url1 = d.find("a")
         
             url2 = "https://lib.ugent.be/"+url1["href"]
             url1 = tiny_url(url2)
-            print("it isnt ugent: ",name[2:-3].replace("\n",""))
-            print("url: ",url1)
+            #print("it isnt ugent: ",name[2:-3].replace("\n",""))
+            print("not ugent:)")
+            #print("url: ",url1)
             
             
-            all1.append(name[2:-3].replace("\n",""))
-            all1.append(url1)
-       # print("this is all1: ",all1)
+            als.append(name[2:-3].replace("\n",""))
+            als.append(url1)
+            all1.append(als)
+        # print("this is all1: ",all1)
         #print('this is name:\n','#'*30,name)
         #print('n: ',n)
         #print(d.find('a',)['href'])
@@ -80,23 +78,30 @@ def get_data(pageNo):
         #print('shorted url: ',url)
         #print('this is price:', price)
     #print("this is all1 somewhere else: ",all1)
+    #print("this is all1: ",all1)
     return all1
 
 results = []
+no_pages = 10
+#### for some reason this works [[['       Machine Learning and Biometrics    ', 'https://tinyurl.com/y5h3ryjg']]]
+# should be like [[name,href],[name,href]]
 for i in range(1, no_pages+1):
     x = get_data(i)
-    print("this is x: ",x)
-    results.append(x)
-print("this is results: ",results)
+    #print("this is x: ",x)
+    if x != []:
+        results.append(x)
+    else:
+        print("not adding it")
+        pass
+#print("this is results: ",results)
 
-
-file = open("books.data","w+")
-file.write(str(results))
+#file = open("books.data","w+")
+#file.write(str(results))
 #file.read()
-#flatten = lambda l: [item for sublist in l for item in sublist]
-#f = pd.DataFrame(flatten(results),columns=['Name','link to book'])
-#df.to_csv('books.csv', index=False, encoding='utf-8')
+flatten = lambda l: [item for sublist in l for item in sublist]
+df = pd.DataFrame(flatten(results),columns=['Name','link to book'])
+df.to_csv('books.csv', index=False, encoding='utf-8')
 
-#df = pd.read_csv("books.csv")
+df = pd.read_csv("books.csv")
 #pd.set_option("display.max_rows", None, "display.max_columns", None)
-
+print(df)
