@@ -28,3 +28,20 @@ WITHOUT_PAGES = requests.get("https://YOURE_URL.com")
 
 ```
 But still very nice of the university to make a big part of their library public.
+
+## New thingy
+Because web scraping is quite handy and i never really tried classes before i though why not make a class for webscraping. It's not very good, you still have to do some things youreself. But it works none the less. I remade my previous program with it except for the csv file part.
+#### How do you use it?
+Well it is something like this:
+```python
+
+the_thing = scrape("THE URL",["WHAT YOU WANT TO FIND",{"AN ATRIBUTE":"THE VALUE OF THAT ATTRIBUTE"}],
+[["WHAT YOU WANT TO FIND INSIDE OF IT",{"SAME PRINCIPLE AS THE OTHER THING"}],
+["maybe something else you want to find",{"SAME PRINCIPLE AS THE OTHER THING"}]])
+the_not_clean_output = the_thing.fetch_data()
+
+clean_output = []
+for i in range(len(the_not_clean_output)):
+  clean_output.append(the_not_clean_output[i].whatever_you_want_to_get_from_it
+```
+If you want a better example look at the file <a href="https://github.com/4C4F4943/web_scraping/blob/main/with_class.py">with_class</a>.
