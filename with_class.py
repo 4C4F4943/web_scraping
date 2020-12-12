@@ -78,5 +78,6 @@ for z in range(1,how_many):
     outp.append(tm)
 
 for i in range(len(outp)):
-  print(outp[i])
+  if outp[i][-1] != "i CAN'T read it:(":
+    print(outp[i])
 
